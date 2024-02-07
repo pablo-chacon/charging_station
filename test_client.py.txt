@@ -1,0 +1,87 @@
+import requests
+import json
+
+
+# Author: pablo-chacon.
+# Date: 2024-02-05.
+# Version: 1.0.0.
+
+
+# loading_station class used to simulate the loading station. It has the following methods:
+# simulation_duration() - Get the simulation duration.
+# station_info() - Get the info about time.
+# rate() - Hourly energy rate.
+# baseload() - Avarage energy consumption.
+# charge(data) - Start/Stop charging.
+# discharge(data) - Start/Stop discharging.
+
+
+class loading_station:
+    
+
+    uri = "http://127.0.0.1:5000/"
+    headers = {'Content-Type': 'application/json'}
+    
+
+    def simulation_duration():
+        # Get the simulation duration.
+        payload = {}
+
+        response = requests.request("GET", url, headers=headers, data=payload)
+        return response
+
+
+    def station_info():
+        # Get the info about time.
+        url = uri + "info"
+        payload = {}
+        
+        response = request.get_json(url, headers=headers, data=payload)
+        return response
+
+
+    def rate():
+        # Hourly energy rate.
+        url = uri + "priceperhour"
+        payload = {}
+        
+        response = requests.request("GET", url, headers=headers, data=payload)
+        return response
+
+
+    def baseload():
+        # Avarage energy consumption.
+        url = uri + "baseload"
+        payload = {}
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        return response
+
+
+    def charge(data):
+        # Start/Stop charging.
+        url = uri + "charge"
+        payload = json.dumps({"charging": data})
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+        return response
+
+
+    def discharge(data):
+        # Start/Stop discharging.
+        url = uri + "discharge"
+        payload = json.dumps({
+            "discharging": data})
+        headers = {
+            'Content-Type': 'application/json'}
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        return response
+
+
+
+
+print(loading_station.simulation_duration())
+
+
