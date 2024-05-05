@@ -1,0 +1,73 @@
+endpoints:
+http://127.0.0.1:5000/info information kring
+simuleringstid (ett dygn = ett antal sekunder)
+total energiförbrukning
+EV-batteriets laddning i kWh
+http://127.0.0.1:5000/baseload information kring hushållets energiförbrukning
+under ett dygn (startar vid kl 00:00 på natten.
+http://127.0.0.1:5000/priceperhour information kring Nordpols timpris under ett dygn
+(startar vid kl 00:00 på natten)
+http://127.0.0.1:5000/charge startar/stoppar laddningen
+http://127.0.0.1:5000/discharge laddar ur batteriet till 20%
+Inlämning
+Ladda upp källkoden till lärplattformen.
+Redovisning
+Uppgiften redovisas muntligt och med uppvisande av programmet, torsdag den 8 februari 2024 via zoom.
+Projektet redovisas muntligt och studenten skall förbe
+
+
+
+
+def simulation_duration(url):
+    # Get the simulation duration.
+    payload = {}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+    return response
+
+def station_info(url):
+    # Get the info about time.
+    url = uri + "info"
+    payload = {}
+
+    response = requests.request.get_json(url, headers=headers, data=payload)
+    return response
+
+def rate(url):
+    # Hourly energy rate.
+    url = uri + "priceperhour"
+    payload = {}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+    return response
+
+def baseload(url):
+    # Avarage energy consumption.
+    url = uri + "baseload"
+    payload = {}
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    return response
+
+def charge(data):
+    # Start/Stop charging.
+    url = uri + "charge"
+    payload = json.dumps({"charging": data})
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response
+
+def discharge(uri, data):
+    # Start/Stop discharging.
+    url = uri + "discharge"
+    payload = json.dumps({
+        "discharging": data})
+    headers = {
+        'Content-Type': 'application/json'}
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    return response
+
+
+
